@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { UsersService } from '../users/users.service';
+import { ArticlesService } from './articles.service';
 import { CreateArticlesDto } from './dto/create-articles.dto';
 import { UpdateArticlesDto } from './dto/update-articles.dto';
 
@@ -17,11 +17,11 @@ import { UpdateArticlesDto } from './dto/update-articles.dto';
 @ApiTags('Articles')
 @Controller('articles')
 export class ArticlesController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: ArticlesService) {}
 
   @Post()
-  create(@Body() CreateArticlesDto: CreateArticlesDto) {
-    return this.create(CreateArticlesDto);
+  create(@Body() dto: CreateArticlesDto) {
+    return this.usersService.create(dto);
   }
 
   @Get()
